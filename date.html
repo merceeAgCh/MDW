@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audiorama</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Invitación Especial</h1>
+  <button id="invitarBtn">PRESIONAME</button>
+  <div id="respuesta" style="display:none;">
+    <p>Te invito a una cita en el audiorama de Chapultepec el sábado.</p>
+    <button id="aceptarBtn">Acepto</button>
+    <button id="noAceptarBtn">No Acepto</button>
+  </div>
+
+  <script>
+    document.getElementById('invitarBtn').onclick = function () {
+      document.getElementById('respuesta').style.display = 'block';
+    };
+
+    document.getElementById('aceptarBtn').onclick = function () {
+      alert('GRACIAS POR ACEPTAR, TE VEO CUANDO ESTÉS LISTA PARA IRNOS!! PD: TE AMO MUCHO MÁS DE LO QUE TE PUEDAS IMAGINAR!!');
+    };
+
+    document.getElementById('noAceptarBtn').onclick = function () {
+      alert('TE AMO, PROPON UNA SALIDA');
+    };
+  </script>
+</body>
+
+</html>

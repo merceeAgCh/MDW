@@ -1,47 +1,121 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Audiorama</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin-top: 50px;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego Ruleta</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            background: url('/images/img.webp') no-repeat center center fixed;
+            background-size: cover;
+            font-weight: bold;
+            color: white;
+        }
+        #ruleta {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            margin-bottom: 20px;
+        }
+        .opcion {
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            clip-path: polygon(0 75%, 100% 0, 60% 100%);
+            transform-origin: 100% 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: white;
+            backface-visibility: hidden;
+            text-align: right;
+            padding-right: 10px;
+        }
+        .opcion:nth-child(1) { background-color: #FF5733; transform: rotate(0deg); }
+        .opcion:nth-child(2) { background-color: #33FF57; transform: rotate(72deg); }
+        .opcion:nth-child(3) { background-color: #3357FF; transform: rotate(144deg); }
+        .opcion:nth-child(4) { background-color: #F3FF33; transform: rotate(216deg); }
 
-    button {
-      margin: 10px;
-      padding: 10px 20px;
-      font-size: 16px;
-    }
-  </style>
+        #boton {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+        }
+
+        #mensaje {
+            margin-top: 20px;
+            font-size: 40px;
+            font-weight: bold;
+            color: white;
+        }
+    </style>
 </head>
-
 <body>
-  <h1>Invitación Especial</h1>
-  <button id="invitarBtn">PRESIONAME</button>
-  <div id="respuesta" style="display:none;">
-    <p>Te invito a una cita en el audiorama de Chapultepec el sábado.</p>
-    <button id="aceptarBtn">Acepto</button>
-    <button id="noAceptarBtn">No Acepto</button>
-  </div>
+    <div > 
+        <h1>Contigo, me siento una ecuación equilibrada</h1>
+        <h1> No importa como se resuelva, el resultado siempre es que "te amo"</h1>
+    </div>
+    <div id="ruleta">
+        <div class="opcion" style="transform: rotate(10deg);"></div>
+        <div class="opcion" style="transform: rotate(95deg);"></div>
+        <div class="opcion" style="transform: rotate(170deg);"></div>
+        <div class="opcion" style="transform: rotate(280deg);"></div>
+        <div id="boton" onclick="girarRuleta()">Gírame</div>
+    </div>
+    <div id="mensaje"></div>
 
-  <script>
-    document.getElementById('invitarBtn').onclick = function () {
-      document.getElementById('respuesta').style.display = 'block';
-    };
+    <script>
+        function girarRuleta() {
+            const ruleta = document.getElementById('ruleta');
+            const mensaje = document.getElementById('mensaje');
+            const randomDeg = Math.floor(Math.random() * 360 + 720); // Al menos dos giros completos
+            ruleta.style.transition = 'transform 4s ease-out'; // Aplicar transición
+            ruleta.style.transform = 'rotate(' + randomDeg + 'deg)'; // Girar la ruleta
+            
+            // Almacena el valor final de la rotación
+            setTimeout(() => {
+                const finalDeg = randomDeg % 360; // Obtener el ángulo final
+                ruleta.style.transition = 'none'; // Desactivar la transición
+                ruleta.style.transform = 'rotate(' + finalDeg + 'deg)'; // Posicionar la ruleta
 
-    document.getElementById('aceptarBtn').onclick = function () {
-      alert('GRACIAS POR ACEPTAR, TE VEO CUANDO ESTÉS LISTA PARA IRNOS!! PD: TE AMO MUCHO MÁS DE LO QUE TE PUEDAS IMAGINAR!!');
-    };
-
-    document.getElementById('noAceptarBtn').onclick = function () {
-      alert('TE AMO, PROPON UNA SALIDA');
-    };
-  </script>
+                // Determinar la opción seleccionada
+                const opciones = ['Película', 'Frase Bonita', 'Porque te amo', 'Comodín'];
+                const indice = Math.round(finalDeg / 72) % opciones.length; // Calcular el índice
+                if (opciones[indice] === 'Frase Bonita') {
+                    mensaje.innerText = 'Cuando miro tus ojos, puedo ver el universo entero en expansión';
+                } else {
+                    mensaje.innerText = 'Elegiste: ' + opciones[indice]; // Mostrar la opción elegida
+                }
+                if (opciones[indice] === 'Comodín') {
+                    mensaje.innerText = 'Te preparo algo de comer ' ;
+                }
+                if (opciones[indice] === 'Porque te amo') {
+                    mensaje.innerText = 'Estamos hechos de partículas que han existido desde el comienzo del universo. \nY me gusta pensar que esos átomos recorrieron 14 mil millones de años, a través del tiempo y del espacio, para crearnos; \n Y así pudiéramos estar juntos y complementarnos el uno al otro';
+                }
+                if (opciones[indice] === 'Película') {
+                    mensaje.innerText = 'Veamos la peli que tu elijas ' ;
+                } 
+    
+            }, 4000); // Tiempo de rotación
+        }
+    </script>
 </body>
-
 </html>
