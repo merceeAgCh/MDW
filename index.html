@@ -11,12 +11,13 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
-            background-color: #f0f0f0;
-            font-family: Arial, sans-serif;
+            margin: 0;
             background: url('./img.webp') no-repeat center center fixed;
             background-size: cover;
+            font-family: Arial, sans-serif;
             font-weight: bold;
             color: white;
+            text-align: center;
         }
         #ruleta {
             width: 300px;
@@ -58,20 +59,42 @@
             border-radius: 5px;
             color: white;
             font-weight: bold;
+            background-color: rgba(0, 0, 0, 0.5);
         }
 
         #mensaje {
             margin-top: 20px;
-            font-size: 40px;
+            font-size: 20px;
             font-weight: bold;
             color: white;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            #ruleta {
+                width: 200px;
+                height: 200px;
+            }
+            .opcion {
+                font-size: 12px;
+                padding-right: 5px;
+            }
+            #boton {
+                padding: 5px 10px;
+                font-size: 14px;
+            }
+            #mensaje {
+                font-size: 16px;
+            }
         }
     </style>
 </head>
 <body>
-    <div > 
+    <div> 
         <h1>Contigo, me siento una ecuación equilibrada</h1>
-        <h1> No importa como se resuelva, el resultado siempre es que "te amo"</h1>
+        <h1>No importa como se resuelva, el resultado siempre es que "te amo"</h1>
     </div>
     <div id="ruleta">
         <div class="opcion" style="transform: rotate(10deg);"></div>
