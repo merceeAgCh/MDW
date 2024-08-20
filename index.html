@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juego Ruleta</title>
+    <div> 
+        <h1>Contigo, me siento una ecuación equilibrada</h1>
+        <h1>No importa como se resuelva, el resultado siempre es que "te amo"</h1>
+    </div>
     <style>
         body {
             display: flex;
@@ -12,7 +16,7 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
-            background: url('./img.webp') no-repeat center center fixed;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./img.webp') no-repeat center center fixed;
             background-size: cover;
             font-family: Arial, sans-serif;
             font-weight: bold;
@@ -37,7 +41,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 16px;
+            font-size: 25px;
             color: white;
             backface-visibility: hidden;
             text-align: right;
@@ -63,8 +67,8 @@
         }
 
         #mensaje {
-            margin-top: 30px;
-            font-size: 30px;
+            margin-top: 20px;
+            font-size: 25px;
             font-weight: bold;
             color: white;
         }
@@ -86,16 +90,12 @@
                 font-size: 14px;
             }
             #mensaje {
-                font-size: 16px;
+                font-size: 25px;
             }
         }
     </style>
 </head>
 <body>
-    <div> 
-        <h1>Contigo, me siento una ecuación equilibrada</h1>
-        <h1>No importa como se resuelva, el resultado siempre es que "te amo"</h1>
-    </div>
     <div id="ruleta">
         <div class="opcion" style="transform: rotate(10deg);"></div>
         <div class="opcion" style="transform: rotate(95deg);"></div>
